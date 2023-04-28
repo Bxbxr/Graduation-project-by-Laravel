@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index($name)
+    public function index()
     {
-        $profile = User::where('name', $name)->firstOrFail();
         return view('profiles.show', [
-            'profile' => $profile
+            'profile' => auth()->user()
         ]);
     }
 }
