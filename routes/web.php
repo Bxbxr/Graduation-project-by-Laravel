@@ -61,15 +61,18 @@ Route::get('/notification', 'App\Http\Controllers\NotificationController@allNoti
 
 Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
     Route::get('/','App\Http\Controllers\AdminsController@index')->name('admin.index');
-    Route::get('/channels','App\Http\Controllers\ChannelController@adminIndex')->name('channels.index');
-    Route::patch('/{user}/channels','App\Http\Controllers\ChannelController@adminUpdate')->name('channels.update')->middleware('can:update-users');
-    Route::delete('/channels/{user}','App\Http\Controllers\ChannelController@adminDelete')->name('channels.delete')->middleware('can:update-users');
-    Route::patch('/{user}/block','App\Http\Controllers\ChannelController@adminBlock')->name('channels.block')->middleware('can:update-users');
-    Route::get('/channels/block','App\Http\Controllers\ChannelController@blockedChannels')->name('channels.blocked');
-    Route::patch('/{user}/open','App\Http\Controllers\ChannelController@openBlock')->name('channels.open.block')->middleware('can:update-users');
-    Route::get('/allChannels','App\Http\Controllers\ChannelController@allChannels')->name('channels.all');
+    Route::controller(\App\Http\Controllers\ChannelController::class)->group(function () {
+        Route::get('/channels','adminIndex')->name('channels.index');
+        Route::delete('/channels/{user}','adminDelete')->name('channels.delete')->middleware('can:update-users');
+        Route::patch('/{user}/channels','adminUpdate')->name('channels.update')->middleware('can:update-users');
+        Route::patch('/{user}/block','adminBlock')->name('channels.block')->middleware('can:update-users');
+        Route::get('/channels/block','blockedChannels')->name('channels.blocked');
+        Route::patch('/{user}/open','openBlock')->name('channels.open.block')->middleware('can:update-users');
+        Route::get('/allChannels','allChannels')->name('channels.all'); // TODO: change to kebab
+        Route::get('/allUsers','allUsers')->name('users.all');
+
+    });
     Route::get('/mostViewedVideos','App\Http\Controllers\VideoController@mostViewedVideos')->name('most.viewed.video');
-    Route::get('/allUsers','App\Http\Controllers\ChannelController@allUsers')->name('users.all');
     
 
 
@@ -81,6 +84,7 @@ Route::get('/posts', 'App\Http\Controllers\PostController@index')->name('posts')
 
 Route::get('/posts/all', 'App\Http\Controllers\PostController@channelLastPosts')->name('all.posts');
 Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
+Route::get('/{id}/profile', 'App\Http\Controllers\ProfileController@getId')->name('user.profile');
 
 Route::resource('post', 'App\Http\Controllers\PostController')->except('index')->names([
     'create' => 'posts.create',

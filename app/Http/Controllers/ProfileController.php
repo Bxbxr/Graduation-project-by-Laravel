@@ -13,4 +13,13 @@ class ProfileController extends Controller
             'profile' => auth()->user()
         ]);
     }
+
+    public function getId(int $id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('profiles.show', [
+            'profile' => $user,
+        ]);
+    }
 }

@@ -18,6 +18,8 @@
                                 <a href="/posts/create" class="btn btn-primary"
                                     style="white-space: nowrap;">{{ __('site.Add Post') }}</a>
                             @else
+                                <a href="/chatify/{{ $profile->id }}" class="btn btn-primary"
+                                    style="white-space: nowrap;">مراسلة</a>
                                 <!-- Livewire code here -->
                             @endif
                         </div>
@@ -38,5 +40,4 @@
         </header>
         <hr class="my-4">
     </div>
-    
 @endsection

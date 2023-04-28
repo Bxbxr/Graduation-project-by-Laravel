@@ -47,7 +47,7 @@
                                     <i class="fas fa-clock"></i> <span>{{ $video->created_at->diffForHumans() }}</span>
                                 </small>
                             </div>
-                            <a href="{{ route('main.channels.videos', $video->user) }}">
+                            <a href="{{ route('user.profile', $video->user->id) }}">
                                 <img src="{{ $video->user->profile_photo_url }}" class="rounded-full my-1 mr-3 d-inline"
                                     width="30">
                                 @if ($video->user->type == 'university')

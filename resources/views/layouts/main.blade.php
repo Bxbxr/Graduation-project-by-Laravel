@@ -109,7 +109,7 @@
                     @auth
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light">
+                            <a href="/chatify" class="nav-link text-light">
                                 <i class="fas fa-comments"></i>
                                 المحادثات
                             </a>
