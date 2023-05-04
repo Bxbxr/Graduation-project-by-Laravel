@@ -92,6 +92,9 @@ Route::resource('post', 'App\Http\Controllers\PostController')->except('index')-
     'store' => 'posts.store'
 ]);
 Route::post('/post/search', 'App\Http\Controllers\PostController@search')->name('post.search');
+
+Route::get('/major/getByUniversityId/{id}', 'App\Http\Controllers\MajorController@getByUniversityId')->name('major.getByUniversityId');
+
 // Route::get('te', function () {
 //     $user = User::first();
 

@@ -1,18 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container">
+<style>
+    .my-container {
+        width: 1600px;
+        margin: 0 auto;
+    }
+</style>
+    <div class="my-container">
         <div class="row">
+            @if ($profile->type === 'university')
             <div class="col-md-3">
                 <h3 class="ml-5 mt-4">التخصصات</h3>
-                <nav class="nav  bg-light ml-5" style="max-height: 400px; overflow-y: auto;">
-                    <a class="nav-link active" href="#">تقنية معلومات</a>
-                    <a class="nav-link" href="#">طب اسنان</a>
-                    <a class="nav-link" href="#">علوم حاشوب</a>
-                    <a class="nav-link " href="#">ذكاء صناعي</a>
-
-                </nav>
+                @include('partials.majors-list')
             </div>
+            @endif
 
 
             <div class="col-md-6">
@@ -55,10 +57,10 @@
                 <h3 class="mr-5 mt-4">الطلاب</h3>
                 <div style="height: 400px; overflow-y: auto;">
                     <nav class="nav flex-column bg-light mr-5">
-                        <a class="nav-link active" href="#">ابراهيم</a>
-                        <a class="nav-link" href="#">اسامة</a>
-                        <a class="nav-link" href="#">رشيد</a>
-                        <a class="nav-link " href="#">علي</a>
+                        @foreach ($users as $user)
+                            <a class="nav-link active" href="/chatify/{{ $user->id }}">{{ $user->name }}</a>
+                        @endforeach
+
 
                     </nav>
                 </div>

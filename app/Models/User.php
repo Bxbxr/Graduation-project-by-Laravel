@@ -121,5 +121,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Major::class, 'university_majors', 'user_id', 'major_id')->withTimestamps()->withPivot('id');
     }
+    public function level()
+    {
+        return $this->hasOne(Level::class);
+    }
+    
+    public function users()
+    {
+        return $this->hasMany($this, 'university_id', 'id');
+    }
 
 }

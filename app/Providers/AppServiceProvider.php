@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('layouts.main', 'App\Http\ViewComposers\PageComposer');
+        View::composer('partials.majors-list', 'App\Http\ViewComposers\MajorComposer');
     }
 }

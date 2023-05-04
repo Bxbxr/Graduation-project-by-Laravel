@@ -182,6 +182,9 @@ return [
     'Edit Profile' =>     'الملف الشخصي',
     'Add Post' =>         'اظافة منشور',
     'Add Video' =>        'اظافة فيديو',
+    'major' =>            'التخصص',
+    'levels' =>            'المستوى',
+
 
 
 

@@ -2,6 +2,12 @@
     @php
         $universities = \App\Models\User::where('type', 'university')->get();
     @endphp
+    @php
+        $users = \App\Models\User::with('majors')->get();
+    @endphp
+    @php
+        $levels = \App\Models\Level::get();
+    @endphp
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -22,9 +28,9 @@
             <div class="col-span-6 sm:col-span-4 mb-3">
                 <x-jet-label for="type" value="{{ __('site.type') }}" />
                 <select name="type" id="type"
-                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300 pr-8"
                     wire:model.defer="state.type">
-                    <option selected disabled>اختر النوع</option>
+                    <option selected disabled> اختر النوع </option>
                     <option value="university">{{ __('site.University') }}</option>
                     <option value="student">{{ __('site.Student') }}</option>
                 </select>
@@ -34,35 +40,50 @@
             <div class="col-span-6 sm:col-span-4" id="university-list">
                 <x-jet-label for="type" value="{{ __('site.selectUni') }}" />
                 <select name="university_id"
-                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300 pr-8"
                     wire:model.defer="state.status">
-                    <option selected disabled>اختر جامعة</option>
+                    <option selected disabled> اختر جامعة </option>
                     @foreach ($universities as $university)
-                        <option value="{{ $university->id }}" id="university-list">{{ $university->name }}</option>
+                        <option value="{{ $university->id }}" id="university-list-{{ $university->id }}">
+                            {{ $university->name }}</option>
                     @endforeach
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
             </div>
-            <!-- choose the major -->
 
+            <!-- choose the major -->
             <div class="col-span-6 sm:col-span-4" id="major">
                 <x-jet-label for="major" value="{{ __('site.major') }}" />
-                <select name="major"
-                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
+                <select name="major" class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
                     wire:model.defer="state.status">
-                    <option selected disabled>اختر تخصصك</option>
-                    @foreach ($universities as $university)
-                        <option value="{{ $university->id }}" id="university-list">{{ $university->name }}</option>
+                    <option selected disabled> اختر تخصصك </option>
+                    @foreach ($users as $user)
+                        @foreach ($user->majors as $major)
+                            <option value="{{ $major->id }}" id="major">{{ $major->name }}</option>
+                        @endforeach
                     @endforeach
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
             </div>
 
-            
+            <!-- choose the level -->
+            <div class="col-span-6 sm:col-span-4" id="level">
+                <x-jet-label for="level" value="{{ __('site.levels') }}" />
+                <select name="level" class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
+                    wire:model.defer="state.status">
+                    <option selected disabled> اختر المستوى </option>
+                    @foreach ($levels as $level)
+                        <option value="{{ $level->id }}" id="level">{{ $level->name }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="type" class="mt-2" />
+            </div>
+
+
 
             <div class="mt-4" id="university-number">
                 <x-jet-label for="acdamic-no" value="{{ __('site.acdamic-no') }}" />
-                <x-jet-input id="acdamic-no" class="block mt-1 w-full"  type="text" name="acdamic-no"
+                <x-jet-input id="acdamic-no" class="block mt-1 w-full" type="text" name="acdamic-no"
                     :value="old('acdamic-no')" />
             </div>
 
@@ -129,18 +150,51 @@
                     // Get a reference to the university select box
                     var universitySelect = $("#university-list");
                     var universityNumber = $("#university-number");
+                    var major = $("#major");
+                    var level = $("#level");
+
                     // hide the university list by default
                     universitySelect.hide();
                     universityNumber.hide();
+                    major.hide();
+                    level.hide();
 
                     // Bind an event handler to the change event of the type select box
                     typeSelect.change(function() {
                         if ($(this).val() === "student") {
                             universitySelect.show();
                             universityNumber.show();
+                            major.show();
+                            level.show();
                         } else {
                             universitySelect.hide();
                             universityNumber.hide();
+                            major.hide();
+                            level.hide();
+                        }
+                    });
+                });
+
+                $(document).ready(function() {
+                    $('#university-list').on('change', function() {
+                        var universityId = $(this).children('select').val();
+                        console.log(universityId)
+                        if (universityId) {
+                            $.ajax({
+                                url: '/major/getByUniversityId/' + universityId,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data) {
+                                    $('#major').children('select').empty();
+                                    $.each(data, function(key, value) {
+                                        $('#major').children('select').append(
+                                            '<option value="' + key + '">' +
+                                            value + '</option>');
+                                    });
+                                }
+                            });
+                        } else {
+                            $('#major').empty();
                         }
                     });
                 });
