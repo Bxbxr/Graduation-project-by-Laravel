@@ -30,7 +30,7 @@
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
             </div>
-
+            <!-- choose the university -->
             <div class="col-span-6 sm:col-span-4" id="university-list">
                 <x-jet-label for="type" value="{{ __('site.selectUni') }}" />
                 <select name="university_id"
@@ -43,8 +43,24 @@
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
             </div>
+            <!-- choose the major -->
 
-            <div class="mt-4">
+            <div class="col-span-6 sm:col-span-4" id="major">
+                <x-jet-label for="major" value="{{ __('site.major') }}" />
+                <select name="major"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
+                    wire:model.defer="state.status">
+                    <option selected disabled>اختر تخصصك</option>
+                    @foreach ($universities as $university)
+                        <option value="{{ $university->id }}" id="university-list">{{ $university->name }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="type" class="mt-2" />
+            </div>
+
+            
+
+            <div class="mt-4" id="university-number">
                 <x-jet-label for="acdamic-no" value="{{ __('site.acdamic-no') }}" />
                 <x-jet-input id="acdamic-no" class="block mt-1 w-full"  type="text" name="acdamic-no"
                     :value="old('acdamic-no')" />
@@ -112,16 +128,19 @@
 
                     // Get a reference to the university select box
                     var universitySelect = $("#university-list");
-
+                    var universityNumber = $("#university-number");
                     // hide the university list by default
                     universitySelect.hide();
+                    universityNumber.hide();
 
                     // Bind an event handler to the change event of the type select box
                     typeSelect.change(function() {
                         if ($(this).val() === "student") {
                             universitySelect.show();
+                            universityNumber.show();
                         } else {
                             universitySelect.hide();
+                            universityNumber.hide();
                         }
                     });
                 });

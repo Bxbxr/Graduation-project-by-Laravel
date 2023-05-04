@@ -199,6 +199,9 @@
                                         <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                                             {{ __('site.profile') }}
                                         </x-jet-responsive-nav-link>
+                                        <x-jet-responsive-nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile.show')">
+                                            {{ __('site.my-profile') }}
+                                        </x-jet-responsive-nav-link>
 
                                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                             <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}"

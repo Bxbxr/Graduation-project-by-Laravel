@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VideoController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -83,7 +84,7 @@ Route::resource('page', 'App\Http\Controllers\PageController');
 Route::get('/posts', 'App\Http\Controllers\PostController@index')->name('posts');
 
 Route::get('/posts/all', 'App\Http\Controllers\PostController@channelLastPosts')->name('all.posts');
-Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
+Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
 Route::get('/{id}/profile', 'App\Http\Controllers\ProfileController@getId')->name('user.profile');
 
 Route::resource('post', 'App\Http\Controllers\PostController')->except('index')->names([
@@ -91,3 +92,8 @@ Route::resource('post', 'App\Http\Controllers\PostController')->except('index')-
     'store' => 'posts.store'
 ]);
 Route::post('/post/search', 'App\Http\Controllers\PostController@search')->name('post.search');
+// Route::get('te', function () {
+//     $user = User::first();
+
+//     return $user->majors;
+// });

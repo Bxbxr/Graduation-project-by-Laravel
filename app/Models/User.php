@@ -117,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function majors()
+    {
+        return $this->belongsToMany(Major::class, 'university_majors', 'user_id', 'major_id')->withTimestamps()->withPivot('id');
+    }
+
 }
