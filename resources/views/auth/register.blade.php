@@ -54,13 +54,13 @@
             <!-- choose the major -->
             <div class="col-span-6 sm:col-span-4" id="major">
                 <x-jet-label for="major" value="{{ __('site.major') }}" />
-                <select name="major" class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
-                    wire:model.defer="state.status">
-                    <option selected disabled> اختر تخصصك </option>
-                    @foreach ($users as $user)
-                        @foreach ($user->majors as $major)
-                            <option value="{{ $major->id }}" id="major">{{ $major->name }}</option>
-                        @endforeach
+                <select name="major_id"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300 pr-8"
+                    wire:model.defer="state.major">
+                    <option selected disabled> اختر التخصص </option>
+                    @foreach ($users as $major)
+                        <option value="{{ $major->id }}" id="major-{{ $major->id }}">
+                            {{ $major->name }}</option>
                     @endforeach
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
@@ -69,8 +69,8 @@
             <!-- choose the level -->
             <div class="col-span-6 sm:col-span-4" id="level">
                 <x-jet-label for="level" value="{{ __('site.levels') }}" />
-                <select name="level" class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300"
-                    wire:model.defer="state.status">
+                <select name="level_id" class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300"
+                    wire:model.defer="state.level">
                     <option selected disabled> اختر المستوى </option>
                     @foreach ($levels as $level)
                         <option value="{{ $level->id }}" id="level">{{ $level->name }}</option>
