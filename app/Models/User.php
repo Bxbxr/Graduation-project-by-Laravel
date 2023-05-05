@@ -132,5 +132,9 @@ class User extends Authenticatable
     {
         return $this->hasMany($this, 'university_id', 'id');
     }
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
 
 }
