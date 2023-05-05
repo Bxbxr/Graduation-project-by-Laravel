@@ -1,19 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
-<style>
-    .my-container {
-        width: 1600px;
-        margin: 0 auto;
-    }
-</style>
+    <style>
+        .my-container {
+            width: 1300px;
+            margin: 0 auto;
+        }
+    </style>
     <div class="my-container">
         <div class="row">
             @if ($profile->type === 'university')
-            <div class="col-md-3">
-                <h3 class="ml-5 mt-4">التخصصات</h3>
-                @include('partials.majors-list')
-            </div>
+                <div class="col-md-3">
+                    <h3 class="ml-5 mt-4">التخصصات</h3>
+                    @include('partials.majors-list')
+                </div>
             @endif
 
 
