@@ -6,7 +6,7 @@
         $users = \App\Models\User::with('majors')->get();
     @endphp
     @php
-        $levels = \App\Models\Level::get();
+        $levels = \App\Models\Level::all();
     @endphp
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -59,11 +59,11 @@
                     wire:model.defer="state.major">
                     <option selected disabled> اختر التخصص </option>
                     @foreach ($users as $major)
-                        <option value="{{ $major->id }}" id="major-{{ $major->id }}">
+                       <option value="{{ $major->id }}" id="major-id-{{ $major->id }}">
                             {{ $major->name }}</option>
                     @endforeach
                 </select>
-                <x-jet-input-error for="type" class="mt-2" />
+                <x-jet-input-error for="major" class="mt-2" />
             </div>
 
             <!-- choose the level -->
@@ -76,7 +76,7 @@
                         <option value="{{ $level->id }}" id="level">{{ $level->name }}</option>
                     @endforeach
                 </select>
-                <x-jet-input-error for="type" class="mt-2" />
+                <x-jet-input-error for="level" class="mt-2" />
             </div>
 
 
