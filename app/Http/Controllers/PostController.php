@@ -143,5 +143,12 @@ class PostController extends Controller
 
         return view('posts.my-videos',compact('res'));
     }
+
+    public function allPosts(User $channel)
+    {
+        $posts = Post::whereApproved(true)->latest()->get();
+        
+        return view('admin.posts.all-posts',compact('posts'));
+    }
     
 }

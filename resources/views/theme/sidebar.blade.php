@@ -4,7 +4,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon">
-          <img style="width:130%" height="70" src="{!! asset('logo.png') !!}"> 
+          <img class="pl-4" style="width:140%" height="70" src="{!! asset('logo.png') !!}"> 
         </div>
       </a>
 
@@ -32,7 +32,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ request()->is('admin/channels') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="#">
+        <a class="nav-link text-right" href="{{ route('allVideos') }}">
         <i class="fas fa-film"></i>
           <span>الفيديوهات</span>
         </a>
@@ -40,7 +40,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{-- request()->is('admin/channels') ? 'active' : '' --}}">
-        <a class="nav-link text-right" href="#">
+        <a class="nav-link text-right" href="{{ route('allPosts') }}">
         <i class="far fa-newspaper"></i>
           <span>المنشورات</span>
         </a>
@@ -67,7 +67,7 @@
       <li class="nav-item {{ request()->is('admin/channels/blocked*') ? 'active' : '' }}">
         <a class="nav-link text-right" href="{{ route('channels.blocked') }}">
         <i class="fas fa-lock"></i>
-          <span>__('الجامعات المحظورة')</span>
+          <span>الجامعات المحظورة</span>
         </a>
       </li>
 
@@ -83,7 +83,7 @@
       <li class="nav-item {{-- request()->is('admin/allChannels*') ? 'active' : '' --}}">
         <a class="nav-link text-right" href="{{ route('users.all') }}">
         <i class="fas fa-"></i>
-          <span>المستخدمين</span>
+          <span>جميع الطلاب</span>
         </a>
       </li>
 
@@ -104,11 +104,11 @@
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item {{-- request()->is('admin/MostViewedVideos*') ? 'active' : '' --}}">
+      {{-- <li class="nav-item request()->is('admin/MostViewedVideos*') ? 'active' : ''">
         <a class="nav-link text-right" href="#">
         <i class="fas fa-chart-line"></i>
           <span> المنشورات الأكثر مشاهدة</span></a>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

@@ -71,9 +71,12 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
         Route::patch('/{user}/open','openBlock')->name('channels.open.block')->middleware('can:update-users');
         Route::get('/allChannels','allChannels')->name('channels.all'); // TODO: change to kebab
         Route::get('/allUsers','allUsers')->name('users.all');
+        Route::get('/allVideos','App\Http\Controllers\VideoController@allVideos')->name('allVideos');
+        Route::get('/allPosts','App\Http\Controllers\PostController@allPosts')->name('allPosts');
 
     });
     Route::get('/mostViewedVideos','App\Http\Controllers\VideoController@mostViewedVideos')->name('most.viewed.video');
+
     
 
 

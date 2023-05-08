@@ -231,4 +231,19 @@ class VideoController extends Controller
         return view('admin.most-viewed-videos',compact('mostViewedVideos'))->with('videoNames', json_encode($videoNames,JSON_NUMERIC_CHECK))->with('videoViews', json_encode($videoViews,JSON_NUMERIC_CHECK));
 
     }
+    
+
+    public function allVideos()
+{
+    $videos = Video::all();
+
+    $videoNames = [];
+    foreach ($videos as $video) {
+        array_push($videoNames, $video->title);
+    }
+
+    return view('admin.videos.all-videos', compact('videos'))
+        ->with('videoNames', json_encode($videoNames, JSON_NUMERIC_CHECK));
+}
+
 }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('heading')
-جميع المستخدمين
+جميع الطلاب
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
         <table id="videos-table" class="table table-stribed text-right" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>اسم المستخدم</th>
+                    <th>اسم الطالب</th>
                     <th>البريد الإلكتروني</th>
                     <th>عدد المنشورات</th>
                     <th>مجموع المشاهدات</th>
