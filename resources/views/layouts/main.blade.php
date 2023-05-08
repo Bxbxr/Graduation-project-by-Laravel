@@ -36,7 +36,7 @@
             <a class="navbar-brand text-light" href="#">جامعتي</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" ></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="visibility: visible">
@@ -116,9 +116,9 @@
                         </li>
 
                         <li class="nav-item mr-5">
-                            <a href="#" class="nav-link text-light">
+                            <a href="{{ route('contact.index') }}" class="nav-link text-light">
                                 <i class="fas fas fa-inbox"></i>
-                                الصندوق
+                                تواصل معنا
                             </a>
                         </li>
                     @endauth
@@ -276,7 +276,7 @@
 
             @yield('content')
         </main>
-        
+
     </div>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
@@ -322,40 +322,40 @@
                         if (item.success) {
                             resposeNotifications +=
                                 '<a class="dropdown-item d-flex align-items-center" href="#">\
-                                                                                            <div class="ml-3">\
-                                                                                                <div class="icon-circle bg-secondary">\
-                                                                                                    <i class="far fa-bell text-white"></i>\
+                                                                                                <div class="ml-3">\
+                                                                                                    <div class="icon-circle bg-secondary">\
+                                                                                                        <i class="far fa-bell text-white"></i>\
+                                                                                                    </div>\
                                                                                                 </div>\
-                                                                                            </div>\
-                                                                                            <div>\
-                                                                                                <div class="small text-gray-500">' +
+                                                                                                <div>\
+                                                                                                    <div class="small text-gray-500">' +
                                 date +
                                 ' الساعة ' +
                                 time +
                                 '</div>\
-                                                                                                <span>تهانينا لقد تم معالجة مقطع الفيديو <b>' +
+                                                                                                    <span>تهانينا لقد تم معالجة مقطع الفيديو <b>' +
                                 item
                                 .notification + '</b> بنجاح</span>\
-                                                                                            </div>\
-                                                                                        </a>';
+                                                                                                </div>\
+                                                                                            </a>';
                         } else {
                             resposeNotifications +=
                                 '<a class="dropdown-item d-flex align-items-center" href="#">\
-                                                                                            <div class="ml-3">\
-                                                                                                <div class="icon-circle bg-secondary">\
-                                                                                                    <i class="far fa-bell text-white"></i>\
+                                                                                                <div class="ml-3">\
+                                                                                                    <div class="icon-circle bg-secondary">\
+                                                                                                        <i class="far fa-bell text-white"></i>\
+                                                                                                    </div>\
                                                                                                 </div>\
-                                                                                            </div>\
-                                                                                            <div>\
-                                                                                                <div class="small text-gray-500">' +
+                                                                                                <div>\
+                                                                                                    <div class="small text-gray-500">' +
                                 date +
                                 ' الساعة ' +
                                 time +
                                 '</div>\
-                                                                                                <span>للأسف حدث خطأ غير متوقع أثناء معالجة مقطع الفيديو <b>' +
+                                                                                                    <span>للأسف حدث خطأ غير متوقع أثناء معالجة مقطع الفيديو <b>' +
                                 item.notification + '</b> يرجى رفعه مرة أخرى</span>\
-                                                                                            </div>\
-                                                                                        </a>';
+                                                                                                </div>\
+                                                                                            </a>';
                         }
                         $('.alert-body').html(resposeNotifications);
                     });

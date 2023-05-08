@@ -13,9 +13,9 @@ class Major extends Model
     {
         return $this->belongsToMany(User::class, 'university_majors', 'user_id', 'major_id')->withTimestamps()->withPivot('id');
     }
-     public function userss()
+    public function ss()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'major_id', 'id');
     }
 }
 

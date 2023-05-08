@@ -73,16 +73,20 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
         Route::get('/allUsers','allUsers')->name('users.all');
         Route::get('/allVideos','App\Http\Controllers\VideoController@allVideos')->name('allVideos');
         Route::get('/allPosts','App\Http\Controllers\PostController@allPosts')->name('allPosts');
+        Route::get('/allpages', 'App\Http\Controllers\PageController@allpages')->name('allpages');
 
     });
     Route::get('/mostViewedVideos','App\Http\Controllers\VideoController@mostViewedVideos')->name('most.viewed.video');
-
     
-
-
+    
+    
+    
 });
 
+Route::get('/majors/{id}', 'App\Http\Controllers\MajorController@show');
 Route::resource('page', 'App\Http\Controllers\PageController');
+Route::get('/platformpage', 'App\Http\Controllers\PlatformPageController@create')->name('platformpage.create');
+
 
 Route::get('/posts', 'App\Http\Controllers\PostController@index')->name('posts');
 
@@ -97,6 +101,11 @@ Route::resource('post', 'App\Http\Controllers\PostController')->except('index')-
 Route::post('/post/search', 'App\Http\Controllers\PostController@search')->name('post.search');
 
 Route::get('/major/getByUniversityId/{id}', 'App\Http\Controllers\MajorController@getByUniversityId')->name('major.getByUniversityId');
+Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name('contact.index');
+
+Route::get('accept', function () {
+    return view('accept');
+});
 
 // Route::get('te', function () {
 //     $user = User::first();

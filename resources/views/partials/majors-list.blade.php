@@ -1,11 +1,6 @@
-<nav class="nav  bg-light ml-5" style="max-height: 400px; overflow-y: auto;">
-    <ul class="nav flex-column">
-    @foreach ($majors as $major)
-    <li class="nav-item">
-        <a class="nav-link active" href="#"> {{ $major }} </a>
-    </li>
-        @endforeach
-    </ul>
-</nav>
-
-
+<div class="list-group ml-5" style="max-height: 400px; overflow-y: auto;">
+    @foreach ($majors as $id => $major)
+        <a href="/majors/{{ $id }}" target="_blank"
+            class="list-group-item list-group-item-action {{ $id % 2 == 0 ? 'bg-light' : 'bg-white' }}">{{ $major }}</a>
+    @endforeach
+</div>

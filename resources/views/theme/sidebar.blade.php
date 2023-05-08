@@ -55,8 +55,8 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item {{-- request()->is('admin/allChannels*') ? 'active' : '' --}}">
-        <a class="nav-link text-right" href="#">
+      <li class="nav-item ">
+        <a class="nav-link text-right" href="{{ route('allpages') }}">
         <i class="fas fa-book"></i>
           <span>ادارة الصفحات</span>
         </a>
@@ -86,13 +86,13 @@
           <span>جميع الطلاب</span>
         </a>
       </li>
-
-      <li class="nav-item {{-- request()->is('admin/allChannels*') ? 'active' : '' --}}">
+{{-- 
+      <li class="nav-item request()->is('admin/allChannels*') ? 'active' : ''">
         <a class="nav-link text-right" href="#">
         <i class="fas fa-user-graduate"></i>
           <span>طلاب الجامعات</span>
         </a>
-      </li>
+      </li> --}}
 
 
 

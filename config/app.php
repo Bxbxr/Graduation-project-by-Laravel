@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         \Chatify\ChatifyServiceProvider::class,
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
 
         /*
          * Package Service Providers...

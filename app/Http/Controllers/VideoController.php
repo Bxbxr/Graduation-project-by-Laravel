@@ -18,7 +18,7 @@ class VideoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['show','addView']);
+        $this->middleware(['auth', 'accepted'])->except(['show','addView']);
     }
     /**
      * Display a listing of the resource.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\View;
@@ -12,7 +13,10 @@ class AdminsController extends Controller
     public function index()
     {
         $numberOfVideos = Video::count();
-        $numberOfChannels = User::count();
+        $numberOfStudents = User::where('type','student')->count();
+        $numberOfUniversities = User::where('type','university')->count();
+        $numberOfPosts = Post::count();
+
 
         $mostViews = View::select('user_id',DB::raw('sum(views.views_number) as total'))
         ->groupBy('user_id')
@@ -28,6 +32,6 @@ class AdminsController extends Controller
             array_push($totalViews, $view->total);
         }
 
-        return view('admin.index',compact('numberOfVideos','numberOfChannels'))->with('names',json_encode($names,JSON_NUMERIC_CHECK))->with('totalViews',json_encode($totalViews,JSON_NUMERIC_CHECK));
+        return view('admin.index',compact('numberOfVideos','numberOfStudents','numberOfPosts','numberOfUniversities'))->with('names',json_encode($names,JSON_NUMERIC_CHECK))->with('totalViews',json_encode($totalViews,JSON_NUMERIC_CHECK));
     }
 }

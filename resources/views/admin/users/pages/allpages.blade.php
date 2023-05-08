@@ -18,12 +18,12 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($pages as $page)
                         <tr>
-                            <td><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></td>
-                            <td>{{ $post->user->name }}</td>
+                            <td><a href="{{ route('allpages', $page->id) }}">{{ $page->title }}</a></td>
+                            <td>{{ $page->user->name }}</td>
                             <td>
-                                <p>{{ $post->created_at }}</p>
+                                <p>{{ $page->created_at }}</p>
                             </td>
                         </tr>
                     @endforeach

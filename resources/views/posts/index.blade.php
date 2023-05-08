@@ -16,7 +16,7 @@
                                 @if (!auth()->user()->block)
                                     @if (!auth()->user()->block)
                                         <form method="POST" action="{{ route('post.destroy', $post->id) }}"
-                                            onsubmit="return confirm('هل أنت متأكد أنك تريد حذف مقطع الفيديو هذا؟')">
+                                            onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المنشور هذا؟')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="float-left"><i
