@@ -1,11 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container">
-        <h1>{{ $major->name }}</h1>
-        <p>{{ $major->description }}</p>
+    <div class="container mx-auto max-w-2xl py-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-2">{{ $major->name }}</h1>
+            <hr class="border-b-2 border-gray-600 my-8 mx-auto w-1/2">
+        </div>
+        <div class="bg-white shadow-md rounded-lg px-8 py-6 mt-6">
+            <p class="text-gray-700 text-lg leading-relaxed">{{ $major->description }}</p>
+            <hr class="border-t-2 border-gray-600 my-8">
+            <p class="text-gray-600 text-sm mb-2">Program Information:</p>
+            <ul class="list-disc list-inside">
+                <li class="text-gray-700 mb-2"><strong>Program:</strong> {{ $major->name }}</li>
+                <li class="text-gray-700 mb-2"><strong>Duration:</strong> {{ $major->duration }}</li>
+                <li class="text-gray-700 mb-2"><strong>Degree:</strong> {{ $major->degree }}</li>
+                <li class="text-gray-700 mb-2"><strong>Credit Hours:</strong> {{ $major->credit_hours }}</li>
+            </ul>
+        </div>
     </div>
-    @foreach ($major->userss as $user)
-        <li>{{ $user->name }}</li>
-    @endforeach
 @endsection

@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('accepted');
+        $this->middleware('accepted')->except('getId');
     }
     public function index()
     {

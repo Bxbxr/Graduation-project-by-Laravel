@@ -22,7 +22,7 @@ class PostController extends Controller
 
     public function __construct(Post $post)
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified','accepted']);
 
         $this->post = $post;
     }
