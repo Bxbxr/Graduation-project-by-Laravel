@@ -186,6 +186,8 @@ return [
     'levels' =>            'المستوى',
     'bio' =>            'النبذه',
     'url' =>            'الرابط',
+    'StudentCardPhoto' =>  'صورة بطاقة الجامعة',
+    'Upload Student Card Photo'=> ' اضغط تحميل صورة البطاقة ',
 
 
 

@@ -77,11 +77,13 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
 
     });
     Route::get('/mostViewedVideos','App\Http\Controllers\VideoController@mostViewedVideos')->name('most.viewed.video');
-    
+    Route::resource('/users','App\Http\Controllers\admin\UserController');
     
     
     
 });
+// Route::post('/change-user-status/{userId}/{status}', 'App\Http\Controllers\admin\UserController@changeStatus');
+
 
 Route::get('/majors/{id}', 'App\Http\Controllers\MajorController@show');
 Route::resource('page', 'App\Http\Controllers\PageController');

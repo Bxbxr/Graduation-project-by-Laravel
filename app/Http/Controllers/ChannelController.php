@@ -33,7 +33,7 @@ class ChannelController extends Controller
         $user->administration_level = $request->administration_level;
         $user->save();
        
-        Session()->flash('flash_message', 'تم تعديل صلاحيات حساب الجامعة بنجاح');
+        Session()->flash('flash_message', 'تم تعديل صلاحيات حساب هذا المستخدم  بنجاح');
          
         return redirect(route('channels.index'));
     }
@@ -41,7 +41,7 @@ class ChannelController extends Controller
     {
         $user->delete();
 
-        session()->flash('flash_message','تم حذف حساب الجامعة بنجاح');
+        session()->flash('flash_message','تم حذف حساب هذا المستخدم بنجاح');
 
         return redirect(route('channels.index'));
     }
@@ -50,7 +50,7 @@ class ChannelController extends Controller
         $user->block = 1;
         $user->save();
 
-        session()->flash('flash_message','تم حظر حساب هذه الجامعة بنجاح');
+        session()->flash('flash_message','تم حظر حساب هذا المستخدم  بنجاح');
         return back();
 
     }
@@ -64,7 +64,7 @@ class ChannelController extends Controller
         $user->block = 0;
         $user->save();
 
-        session()->flash('flash_message','تم فك الحظر عن حساب الجامعة بنجاح');
+        session()->flash('flash_message','تم فك الحظر عن حساب هذا المستخدم  بنجاح');
 
         return redirect(route('channels.blocked'));
     }

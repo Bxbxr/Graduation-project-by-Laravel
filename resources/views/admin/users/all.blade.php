@@ -12,7 +12,7 @@
 <hr>
 <div class="row">
     <div class="col-md-12">
-        <table id="videos-table" class="table table-stribed text-right" width="100%" cellspacing="0">
+        <table id="videos-table" class="table table-striped text-right" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>اسم الطالب</th>

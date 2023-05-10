@@ -4,17 +4,17 @@
     <link href="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 @section('heading')
-    الجامعات المحظورة
+    المستخدمين المحظورين
 @endsection
 
 @section('content')
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <table id="videos-table" class="table table-stribed text-right" width="100%" cellspacing="0">
+            <table id="videos-table" class="table table-striped text-right" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>اسم الجامعة</th>
+                        <th>اسم المستخدم</th>
                         <th>البريد الإلكتروني</th>
                         <th>تاريخ الإنشاء</th>
                         <th>فك الحظر</th>
@@ -34,7 +34,7 @@
                                     @csrf
                                     @if ($user->block)
                                         <button type="submit" class="btn btn-warning btn-sm"
-                                            onclick="return confirm('هل انت متأكد من انك تريد فك حظر حساب هذه الجامعة!')"><i
+                                            onclick="return confirm('هل انت متأكد من انك تريد فك حظر حساب هذا المستخدم!')"><i
                                                 class="fa fa-lock-open"></i> فك الحظر</button>
                                     @endif
                                 </form>

@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-12">
                             <ul class="list-inline mb-3" style="font-size: 19px;  color: #3d7bbe;">
-                                <li class="list-inline-item mr-2"><span class="font-weight-bold">المنشورات: </span> 12 </li>
+                                <li class="list-inline-item mr-2"><span class="font-weight-bold">المنشورات: </span> 1 </li>
                                 @if ($profile->type === 'student')
                                     <li class="list-inline-item mr-3"><a href="#"
                                             style="color: #3d7bbe; text-decoration: none;"><i
@@ -47,9 +47,8 @@
                                 <select name="post-num" class="mr-3"
                                     style="color: #3d7bbe; font-size: 19px;  border: none;">
                                     <option value="#" selected disabled>الصفحات</option>
-                                    <option>10</option>
-                                    <option>20</option>
-                                    <option>30</option>
+                                    <option></option>
+
                                 </select>
                                 </li>
 
@@ -115,7 +114,7 @@
                     <div style="height: 400px; overflow-y: auto;">
                         <nav class="nav flex-column bg-light mr-5">
                             @foreach ($users as $user)
-                                <a class="nav-link active" href="/chatify/{{ $user->id }}">{{ $user->name }}</a>
+                                <a class="nav-link active" href="{{ route('user.profile',$user->id) }}">{{ $user->name }}</a>
                             @endforeach
 
 

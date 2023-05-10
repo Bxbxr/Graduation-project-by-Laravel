@@ -11,10 +11,10 @@
             <hr class="border-t-2 border-gray-600 my-8">
             <p class="text-gray-600 text-sm mb-2">Program Information:</p>
             <ul class="list-disc list-inside">
-                <li class="text-gray-700 mb-2"><strong>Program:</strong> {{ $major->name }}</li>
-                <li class="text-gray-700 mb-2"><strong>Duration:</strong> {{ $major->duration }}</li>
-                <li class="text-gray-700 mb-2"><strong>Degree:</strong> {{ $major->degree }}</li>
-                <li class="text-gray-700 mb-2"><strong>Credit Hours:</strong> {{ $major->credit_hours }}</li>
+                <li class="text-gray-700 mb-2"><strong>البرنامج:</strong> {{ $major->name }}</li>
+                <li class="text-gray-700 mb-2"><strong>التوجيه:</strong> {{ $major->duration }}</li>
+                <li class="text-gray-700 mb-2"><strong>الدرجة:</strong>100</li>
+                <li class="text-gray-700 mb-2"><strong>الساعات:</strong> نظام اترام</li>
             </ul>
         </div>
     </div>

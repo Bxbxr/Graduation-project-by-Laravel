@@ -65,11 +65,12 @@ class PageController extends Controller
 
         return view('pages.show', compact('page'));
     }
-    public function allPages(User $user)
+    public function allPages($id)
     {
-        $pages = Page::all();
-         return view('admin.users.pages.allpages',compact('pages'));
+        $pages = Page::select('title','content')->findOrFail($id);
+         return view('pages.show',compact('pages'));
     }
+    
 
 
 }

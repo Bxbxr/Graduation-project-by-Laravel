@@ -86,13 +86,13 @@
           <span>جميع الطلاب</span>
         </a>
       </li>
-{{-- 
+
       <li class="nav-item request()->is('admin/allChannels*') ? 'active' : ''">
-        <a class="nav-link text-right" href="#">
+        <a class="nav-link text-right" href="{{ route('users.index') }}">
         <i class="fas fa-user-graduate"></i>
-          <span>طلاب الجامعات</span>
+          <span>طلبات التأكيد للمستخدمين</span>
         </a>
-      </li> --}}
+      </li>
 
 
 

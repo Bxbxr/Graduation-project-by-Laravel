@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\Alert;
 use App\Models\Team;
 use App\Models\User;
+use Clockwork\Storage\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,8 @@ class CreateNewUser implements CreatesNewUsers
             'acdamic-no' => ['required', 'numeric'],
             'major_id' => ['required'],
             'level_id' => ['required'],
-            'university_id' => ['required'],    
+            'university_id' => ['required'], 
+            'student_card_photo' => ['required', 'file', 'mimes:jpeg,png,jpg'], // validate that it's an image file with a MIME type of JPEG or PNG // validate that it's an image file
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'type' => ['required'],
@@ -36,6 +38,8 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
+            $file_path = $input['student_card_photo']->storePublicly('student_card_photos', 'public');
+
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
@@ -43,6 +47,7 @@ class CreateNewUser implements CreatesNewUsers
                 'university_id'=>$input['university_id'],
                 'major_id' => $input['major_id'],
                 'level_id' => $input[ 'level_id'],
+                'student_card_photo' => $file_path,
                 'password' => Hash::make($input['password']),
                 'type' => $input['type'],
             ]), function (User $user) {

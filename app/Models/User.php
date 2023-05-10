@@ -32,6 +32,7 @@ class User extends Authenticatable
         'academic_number',
         'major_id',
         'level_id',
+        'student_card_photo',
     ];
 
     /**

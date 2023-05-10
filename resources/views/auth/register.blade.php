@@ -12,10 +12,17 @@
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
+        <style>
+            #student_card_photo {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+        </style>
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}" dir="rtl">
+        <form method="POST" action="{{ route('register') }}" dir="rtl" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -59,7 +66,7 @@
                     wire:model.defer="state.major">
                     <option selected disabled> اختر التخصص </option>
                     @foreach ($users as $major)
-                       <option value="{{ $major->id }}" id="major-id-{{ $major->id }}">
+                        <option value="{{ $major->id }}" id="major-id-{{ $major->id }}">
                             {{ $major->name }}</option>
                     @endforeach
                 </select>
@@ -69,7 +76,8 @@
             <!-- choose the level -->
             <div class="col-span-6 sm:col-span-4" id="level">
                 <x-jet-label for="level" value="{{ __('site.levels') }}" />
-                <select name="level_id" class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300"
+                <select name="level_id"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300"
                     wire:model.defer="state.level">
                     <option selected disabled> اختر المستوى </option>
                     @foreach ($levels as $level)
@@ -80,12 +88,23 @@
             </div>
 
 
-
+            <!-- inter a university ID -->
             <div class="mt-4" id="university-number">
                 <x-jet-label for="acdamic-no" value="{{ __('site.acdamic-no') }}" />
                 <x-jet-input id="acdamic-no" class="block mt-1 w-full" type="text" name="acdamic-no"
                     :value="old('acdamic-no')" />
             </div>
+
+            <!-- inter a university ID image-->
+            <div class="mt-4" id="student_card_photo">
+                <x-jet-label for="student_card_photo" value="{{ __('site.StudentCardPhoto') }}" />
+                <label for="student_card_photo_input"
+                    class="block mt-1 cursor-pointer bg-blue-500 text-dark px-4 py-2 rounded-lg">
+                    {{ __('site.Upload Student Card Photo') }}
+                </label>
+                <x-jet-input id="student_card_photo_input" class="hidden" type="file" name="student_card_photo" />
+            </div>
+
 
 
             <div class="mt-4">
@@ -152,12 +171,14 @@
                     var universityNumber = $("#university-number");
                     var major = $("#major");
                     var level = $("#level");
+                    var student_card_photo = $("#student_card_photo");
 
                     // hide the university list by default
                     universitySelect.hide();
                     universityNumber.hide();
                     major.hide();
                     level.hide();
+                    student_card_photo.hide();
 
                     // Bind an event handler to the change event of the type select box
                     typeSelect.change(function() {
@@ -166,11 +187,13 @@
                             universityNumber.show();
                             major.show();
                             level.show();
+                            student_card_photo.show();
                         } else {
                             universitySelect.hide();
                             universityNumber.hide();
                             major.hide();
                             level.hide();
+                            student_card_photo.hide();
                         }
                     });
                 });

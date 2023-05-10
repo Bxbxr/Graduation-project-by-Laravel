@@ -4,18 +4,19 @@
     <link href="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 @section('heading')
-    صلاحيات الجامعات
+    صلاحيات المستخدمين
 @endsection
 
 @section('content')
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <table id="videos-table" class="table table-stribed text-right" width="100%" cellspacing="0">
+            <table id="videos-table" class="table table-striped text-right" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>اسم الجامعة</th>
+                        <th>الأسم</th>
                         <th>البريد الإلكتروني</th>
+                        <th>نوع المستخدم</th>
                         <th>نوع الجامعة</th>
                         <th>تعديل</th>
                         <th>حذف</th>
@@ -28,9 +29,10 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{$user->type=='student' ? 'طالب' : 'جامعه'}}</td>
                             <td>{{ $user->isSuperAdmin() ? 'مدير عام' : ($user->isAdmin() ? 'مدير' : 'مستخدم') }}</td>
                             <td>
-                                <form class="ml-4 form-inline" method="POST" action="{{ route('channels.update', $user) }}"
+                                {{-- <form class="ml-4 form-inline" method="POST" action="{{ route('channels.update', $user) }}"
                                     style="display:inline-block">
                                     @method('patch')
                                     @csrf
@@ -39,7 +41,7 @@
                                         <option value="0">مستخدم</option>
                                         <option value="1">مدير</option>
                                         <option value="2">مدير عام</option>
-                                    </select>
+                                    </select> --}}
                                     <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
                                         تعديل</button>
                                 </form>
@@ -50,7 +52,7 @@
                                     @csrf
                                     @if (auth()->user() != $user && !$user->isSuperAdmin())
                                         <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('هل انت متأكد من حذف حساب هذه الجامعة من على المنصة')"><i
+                                            onclick="return confirm('هل انت متأكد من حذف حساب هذا المستخدم من على المنصة')"><i
                                                 class="fa fa-trash"></i> حذف</button>
                                     @else
                                         <div class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i>حذف</div>
@@ -67,7 +69,7 @@
                                             </div>
                                         @else
                                             <button type="submit" class="btn btn-warning btn-sm"
-                                                onclick="return confirm('هل انت متأكد من انك تريد حظر هذه الجامعة!')"><i
+                                                onclick="return confirm('هل انت متأكد من انك تريد حظر هذا المستخدم!')"><i
                                                     class="fa fa-lock"></i> حظر</button>
                                         @endif
                                     @else

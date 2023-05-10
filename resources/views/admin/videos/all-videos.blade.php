@@ -1,17 +1,17 @@
 @extends('theme.default')
 
 @section('heading')
-    جميع المنشورات
+    جميع الفيديوهات
 @endsection
 
 @section('content')
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <table id="videos-table" class="table table-stribed text-right" width="100%" cellspacing="0">
+            <table id="videos-table" class="table table-striped text-right" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>عنوان المنشور</th>
+                        <th>عنوان الفيديو</th>
                         <th>اسم الناشر</th>
                         <th>تاريخ النشر</th>
                     </tr>
