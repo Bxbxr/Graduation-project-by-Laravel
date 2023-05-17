@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Actions\Fortify;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -26,6 +26,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
+        
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
@@ -40,7 +41,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
                 'bio' => $input['bio'],
                 'url' => $input['url'],
-                'level_id' => $input['level_id'],
+                'level_id' => $input['level_id']
             ])->save();
         }
     }

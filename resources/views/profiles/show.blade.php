@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             @if ($profile->type === 'university')
-                <div class="col-md-3">
+                <div class="col-md-3 ">
                     <h3 class="ml-5 mt-4">التخصصات</h3>
                     @include('partials.majors-list')
                 </div>
@@ -29,10 +29,18 @@
                                     style="white-space: nowrap;">مراسلة</a>
                                 <!-- Livewire code here -->
                             @endif
+
                         </div>
                         <div class="col-12">
                             <ul class="list-inline mb-3" style="font-size: 19px;  color: #3d7bbe;">
-                                <li class="list-inline-item mr-2"><span class="font-weight-bold">المنشورات: </span> 1 </li>
+                                <li class="list-inline-item mr-2"><span class="font-weight-bold">المنشورات: </span></li>
+                                <select name="post-num" class="mr-3"
+                                    style="color: #3d7bbe; font-size: 19px;  border: none;">
+                                    <option value="#" selected disabled>الصفحات</option>
+                                    {{-- @foreach ($pages as $page) --}}
+                                    <option>من نحن</option>
+
+                                </select>
                                 @if ($profile->type === 'student')
                                     <li class="list-inline-item mr-3"><a href="#"
                                             style="color: #3d7bbe; text-decoration: none;"><i
@@ -44,17 +52,12 @@
                                                 class="fa fa-graduation-cap mr-2"></i><span
                                                 style="margin-right: 5px;">{{ $profile->level->name }}</span></a></li>
                                 @endif
-                                <select name="post-num" class="mr-3"
-                                    style="color: #3d7bbe; font-size: 19px;  border: none;">
-                                    <option value="#" selected disabled>الصفحات</option>
-                                    <option></option>
-
-                                </select>
                                 </li>
 
                             </ul>
-
-
+                            @if ($profile->type === 'student')
+                            <p><span class="text-primary pr-3">الجنس:</span> {{ $profile->gender === 'male' ? 'ذكر' : 'أنثى' }}</p>
+                            @endif
                             <p class="mr-3"><span style="color: rgb(51, 83, 187);"> البايو:</span>
                                 {{ Str::limit($profile->bio, 150) }}
                             </p>
@@ -101,7 +104,7 @@
                     @empty
                         <div class="mx-auto col-8">
                             <div class="alert alert-primary text-center" role="alert">
-                                لا يوجد فيديوهات
+                                لا يوجد منشورات بعد
                             </div>
                         </div>
                     @endforelse
@@ -114,7 +117,8 @@
                     <div style="height: 400px; overflow-y: auto;">
                         <nav class="nav flex-column bg-light mr-5">
                             @foreach ($users as $user)
-                                <a class="nav-link active" href="{{ route('user.profile',$user->id) }}">{{ $user->name }}</a>
+                                <a class="nav-link active"
+                                    href="{{ route('user.profile', $user->id) }}">{{ $user->name }}</a>
                             @endforeach
 
 

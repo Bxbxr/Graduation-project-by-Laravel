@@ -16,7 +16,9 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users= $this->user::where('active_status',false)->paginate(10);
+        $user_id=auth()->user()->id;
+
+        $users= $this->user::where('active_status',false,)->where('university_id',$user_id)->paginate(10);
         return view('admin.users.users-requests.accept-request', compact('users'));
     }
    public function update(Request $request, $id)

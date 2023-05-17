@@ -14,10 +14,10 @@
         </x-slot>
         <style>
             #student_card_photo {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-}
+                border: 1px solid #ccc;
+                padding: 10px;
+                border-radius: 5px;
+            }
         </style>
 
         <x-jet-validation-errors class="mb-4" />
@@ -85,6 +85,19 @@
                     @endforeach
                 </select>
                 <x-jet-input-error for="level" class="mt-2" />
+            </div>
+
+            <!-- gender -->
+            <div class="col-span-6 sm:col-span-4 mb-3">
+                <x-jet-label for="gender" value="{{ __('site.gender') }}" />
+                <select name="gender" id="gender"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300 pr-8"
+                    wire:model.defer="state.gender">
+                    <option selected disabled> اختر الجنس </option>
+                    <option value="male">{{ __('site.male') }}</option>
+                    <option value="female">{{ __('site.female') }}</option>
+                </select>
+                <x-jet-input-error for="gender" class="mt-2" />
             </div>
 
 
@@ -172,12 +185,14 @@
                     var major = $("#major");
                     var level = $("#level");
                     var student_card_photo = $("#student_card_photo");
+                    var gender = $("#gender");
 
                     // hide the university list by default
                     universitySelect.hide();
                     universityNumber.hide();
                     major.hide();
                     level.hide();
+                    gender.hide();
                     student_card_photo.hide();
 
                     // Bind an event handler to the change event of the type select box
@@ -186,6 +201,7 @@
                             universitySelect.show();
                             universityNumber.show();
                             major.show();
+                            gender.show();
                             level.show();
                             student_card_photo.show();
                         } else {
@@ -193,6 +209,7 @@
                             universityNumber.hide();
                             major.hide();
                             level.hide();
+                            gender.hide();
                             student_card_photo.hide();
                         }
                     });

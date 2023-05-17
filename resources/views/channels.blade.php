@@ -27,7 +27,7 @@
                                 @endif
                             </div>
                             <div class="text-center">
-                                <a href="{{ route('main.channels.videos', $channel->id) }}"
+                                <a href="{{ route('user.profile', $channel->id) }}"
                                     class="btn btn-secondary btn-lg">تصفح الجامعة</a>
                             </div>
                         </div>

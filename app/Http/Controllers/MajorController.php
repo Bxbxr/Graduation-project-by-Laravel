@@ -23,9 +23,16 @@ class MajorController extends Controller
 }
 public function show($id)
 {
-    $major = Major::select('majors.name', 'majors.description')->findOrFail($id);
+    $major = Major::select('majors.name', 'majors.description', 'majors.goals','majors.jobs_in_future')->findOrFail($id);
 
     return view('majors.show', compact('major'));
+}
+
+public function all()
+{
+    $majors = Major::all();
+
+    return view('layouts.show-majors', compact('majors'));
 }
 
 

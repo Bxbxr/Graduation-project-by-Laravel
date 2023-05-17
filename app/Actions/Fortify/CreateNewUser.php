@@ -34,6 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'type' => ['required'],
+            'gender' => ['required'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
@@ -50,6 +51,7 @@ class CreateNewUser implements CreatesNewUsers
                 'student_card_photo' => $file_path,
                 'password' => Hash::make($input['password']),
                 'type' => $input['type'],
+                'gender' => $input['gender'],
             ]), function (User $user) {
                 $this->createTeam($user);
                 $alert = Alert::create([

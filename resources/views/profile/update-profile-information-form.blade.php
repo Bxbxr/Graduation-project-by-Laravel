@@ -79,20 +79,18 @@
         </div>
 
         <!-- choose the level -->
-        @if (Auth::user()->type==='student')
-            
-        <div class="col-span-6 sm:col-span-4" id="level">
-            <x-jet-label for="level" value="{{ __('site.levels') }}" />
-            <select name="level_id"
-                class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300"
-                wire:model.defer="state.level">
-                <option selected disabled> اختر المستوى </option>
-                @foreach ($levels as $level)
-                    <option value="{{ $level->id }}" id="level_id">{{ $level->name }}</option>
-                @endforeach
-            </select>
-            <x-jet-input-error for="level" class="mt-2" />
-        </div>
+        @if (Auth::user()->type === 'student')
+            <div class="col-span-6 sm:col-span-4" id="level">
+                <x-jet-label for="level" value="{{ __('site.levels') }}" />
+                <select name="level_id"
+                    class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300">
+                    <option selected disabled> اختر المستوى </option>
+                    @foreach ($levels as $level)
+                        <option value="{{ $level->id }}">{{ $level->name }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="level" class="mt-2" />
+            </div>
         @endif
 
         <!-- Email -->

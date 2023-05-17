@@ -108,7 +108,7 @@ Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name('co
 Route::get('accept', function () {
     return view('accept');
 });
-
+Route::get('/majors', 'App\Http\Controllers\MajorController@all')->name('majors');
 // Route::get('te', function () {
 //     $user = User::first();
 
