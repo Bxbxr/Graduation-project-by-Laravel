@@ -123,7 +123,7 @@ class User extends Authenticatable
     }
     public function majors()
     {
-        return $this->belongsToMany(Major::class, 'university_majors', 'user_id', 'major_id')->withTimestamps()->withPivot('id');
+        return $this->belongsToMany(Major::class, 'university_majors', 'user_id', 'major_id');
     }
     public function level()
     {

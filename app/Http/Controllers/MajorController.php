@@ -8,7 +8,43 @@ use Illuminate\Support\Facades\DB;
 
 class MajorController extends Controller
 {
+    public $major;
+
+    public function __construct(Major $major)
+    {
+        $this->middleware(['accepted'])->except(['allPosts','channelLastPosts','show']);
+
+        $this->major = $major;
+    }
  
+        public function create()
+    {
+        $title = 'اضافة تخصص جديد';
+        return view('admin.majors.create', compact('title'));
+    }
+
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' =>'required',
+            'description'=>'required',
+            'goals'=>'required',
+            'jobs_in_future'=>'required',
+        ]);
+        
+        $major = Major::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'goals' => $request->goals,
+            'jobs_in_future' => $request->jobs_in_future
+        ]);
+
+        $request->user()->majors()->attach($major->id);
+        $userMajors = $request->user()->majors;
+        return back()->with('success', 'تم الحفظ بنجاح');
+    }
+
 
 
     public function getByUniversityId($id)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\PageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +75,8 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
         Route::get('/allVideos','App\Http\Controllers\VideoController@allVideos')->name('allVideos');
         Route::get('/allPosts','App\Http\Controllers\PostController@allPosts')->name('allPosts');
         Route::get('/allpages', 'App\Http\Controllers\PageController@allpages')->name('allpages');
+        Route::resource('/majors', 'App\Http\Controllers\MajorController');
+        
 
     });
     Route::get('/mostViewedVideos','App\Http\Controllers\VideoController@mostViewedVideos')->name('most.viewed.video');
@@ -81,7 +84,9 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
     
     
     
+    
 });
+
 // Route::post('/change-user-status/{userId}/{status}', 'App\Http\Controllers\admin\UserController@changeStatus');
 
 

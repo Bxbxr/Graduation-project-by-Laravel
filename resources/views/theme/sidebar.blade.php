@@ -61,6 +61,14 @@
           <span>ادارة الصفحات</span>
         </a>
       </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item ">
+        <a class="nav-link text-right" href="{{ route('majors.create') }}">
+        <i class="fas fa-book"></i>
+          <span>ادارة التخصصات</span>
+        </a>
+      </li>
       
 
       <!-- Nav Item - Pages Collapse Menu -->

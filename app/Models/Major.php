@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Major extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'goals',
+        'jobs_in_future ',
+    ];
 
     public function users ()
     {
