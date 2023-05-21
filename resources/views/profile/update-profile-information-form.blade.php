@@ -82,7 +82,7 @@
         @if (Auth::user()->type === 'student')
             <div class="col-span-6 sm:col-span-4" id="level">
                 <x-jet-label for="level" value="{{ __('site.levels') }}" />
-                <select name="level_id"
+                <select name="level_id" wire:model.defer="state.level_id"
                     class="mt-1 block w-full form-input rounded-md shadow-sm border pr-8 border-gray-300">
                     <option selected disabled> اختر المستوى </option>
                     @foreach ($levels as $level)

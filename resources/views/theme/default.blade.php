@@ -12,6 +12,7 @@
     <title>لوحة الإدارة - جامعتي</title>
 
     <!-- Custom fonts for this template-->
+    <link href="{!! asset('theme/vendor/js/select2/css/select2.min.css') !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('theme/vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -19,15 +20,17 @@
 
     <!-- Custom styles for this template-->
     <link href="{!! asset('theme/css/sb-admin-2.min.css') !!}" rel="stylesheet">
-    
+
 
     <style>
         .sidebar.toggled .nav-item .nav-link {
             text-align: center !important;
         }
+
         .sidebar #sidebarToggle::after {
             content: '\f105';
         }
+
         .sidebar.toggled #sidebarToggle::after {
             content: '\f104';
         }
@@ -52,10 +55,10 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @if(Session::has('flash_message'))
+                    @if (Session::has('flash_message'))
                         <div class="p-3 mb-2 bg-success text-white rounded text-center">
                             {{ session('flash_message') }}
-                        </div>  
+                        </div>
                     @endif
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -93,8 +96,8 @@
                 <div class="modal-body">إذا كنت متأكد أنك تريد إنهاء الجلسة اضغط على زر خروج</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">إلغاء</button>
-                    <a class="btn btn-primary" href="{{ route('logout') }}" 
-                    onclick="event.preventDefault();
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">خروج</a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -106,18 +109,19 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{!! asset('theme/vendor/jquery/jquery.min.js') !!}"></script>
-    <script src="{!! asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
+    <script src="{{ asset('theme/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/js/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{!! asset('theme/vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
+    <script src="{{ asset('theme/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    {{-- <script src="{!! asset('js/Chart.min.js') !!}"></script> --}}
-    <script src="{!! asset('theme/vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
-    
-    <script src="{!! asset('theme/js/sb-admin-2.min.js') !!}"></script>
-    <script src="{!! asset('js/chart.umd.js') !!}"></script>
+    {{-- <script src="{{ asset('js/Chart.min.js') !!}"></}ript> --}}
+    <script src="{{ asset('theme/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <script src="{{ asset('theme/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('js/chart.umd.js') }}"></script>
 
     @yield('script')
 

@@ -31,16 +31,19 @@ class MajorController extends Controller
             'description'=>'required',
             'goals'=>'required',
             'jobs_in_future'=>'required',
+            
         ]);
         
-        $major = Major::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'goals' => $request->goals,
-            'jobs_in_future' => $request->jobs_in_future
-        ]);
+        $user = $request->user();
+                $major = Major::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'goals' => $request->goals,
+                    'jobs_in_future' => $request->jobs_in_future
+                    ]);
 
-        $request->user()->majors()->attach($major->id);
+        $user->majors()->syncWithoutDetaching([$major->id]);
+
         $userMajors = $request->user()->majors;
         return back()->with('success', 'تم الحفظ بنجاح');
     }

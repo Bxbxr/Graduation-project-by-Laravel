@@ -23,6 +23,8 @@
     },
     "dependencies": {
         "chart.js": "^4.1.1",
-        "pusher-js": "^8.0.0"
+        "install": "^0.13.0",
+        "pusher-js": "^8.0.0",
+        "select2": "^4.1.0-rc.0"
     }
 }

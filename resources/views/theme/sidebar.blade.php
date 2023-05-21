@@ -63,12 +63,14 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
+      @if (Auth()->user()->administration_level==='2')
       <li class="nav-item ">
         <a class="nav-link text-right" href="{{ route('majors.create') }}">
-        <i class="fas fa-book"></i>
+          <i class="fas fa-book"></i>
           <span>ادارة التخصصات</span>
         </a>
       </li>
+      @endif
       
 
       <!-- Nav Item - Pages Collapse Menu -->

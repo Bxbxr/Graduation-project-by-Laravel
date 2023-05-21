@@ -20,7 +20,7 @@
     </script>
 
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/597cb1f685.js" crossorigin="anonymous"></script>
+    <link href="{!! asset('theme/vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet" type="text/css">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">

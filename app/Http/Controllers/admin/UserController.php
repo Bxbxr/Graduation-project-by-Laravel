@@ -19,7 +19,8 @@ class UserController extends Controller
         $user_id=auth()->user()->id;
 
         $users= $this->user::where('active_status',false,)->where('university_id',$user_id)->paginate(10);
-        return view('admin.users.users-requests.accept-request', compact('users'));
+        $admin_users=$this->user::where('active_status',false,)->where('type','university')->paginate(10);
+        return view('admin.users.users-requests.accept-request', compact('users','admin_users'));
     }
    public function update(Request $request, $id)
 {

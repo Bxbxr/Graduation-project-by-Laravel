@@ -16,9 +16,12 @@ class AcceptUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->active_status) {
-            return redirect('accept');
-        }
-        return $next($request);
-    }
+            $user = auth()->user();
+            
+            if ($user && !$user->active_status) {
+                return redirect('accept');
+            }
+            
+            return $next($request);
+            }
 }

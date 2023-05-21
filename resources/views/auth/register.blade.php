@@ -4,6 +4,7 @@
     @endphp
     @php
         $users = \App\Models\User::with('majors')->get();
+        $majors = \App\Models\Major::all();
     @endphp
     @php
         $levels = \App\Models\Level::all();
@@ -86,9 +87,19 @@
                 </select>
                 <x-jet-input-error for="level" class="mt-2" />
             </div>
+            <!-- choose all majors for universities only -->
+            <div class="col-span-6 sm:col-span-4 mb-3" id="multi_majors">
+                <x-jet-label for="multi_majors" value="{{ __('site.majors') }}" />
+                <select class="js-example-basic-single w-full py-2" style="width: 100%" name="majors[]" multiple="multiple">
+                    @foreach ($majors as $major)
+                        <option value="{{ $major->id }}">{{ $major->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <!-- gender -->
-            <div class="col-span-6 sm:col-span-4 mb-3">
+            <div class="col-span-6 sm:col-span-4 mb-3" id="gender">
                 <x-jet-label for="gender" value="{{ __('site.gender') }}" />
                 <select name="gender" id="gender"
                     class="mt-1 block w-full form-input rounded-md shadow-sm border border-gray-300 pr-8"
@@ -122,7 +133,8 @@
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('site.email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
+                    :value="old('email')" />
             </div>
 
             <div class="mt-4">
@@ -186,6 +198,7 @@
                     var level = $("#level");
                     var student_card_photo = $("#student_card_photo");
                     var gender = $("#gender");
+                    var multi_majors = $("#multi_majors");
 
                     // hide the university list by default
                     universitySelect.hide();
@@ -194,6 +207,7 @@
                     level.hide();
                     gender.hide();
                     student_card_photo.hide();
+                    multi_majors.hide();
 
                     // Bind an event handler to the change event of the type select box
                     typeSelect.change(function() {
@@ -204,6 +218,7 @@
                             gender.show();
                             level.show();
                             student_card_photo.show();
+                            multi_majors.hide();
                         } else {
                             universitySelect.hide();
                             universityNumber.hide();
@@ -211,6 +226,7 @@
                             level.hide();
                             gender.hide();
                             student_card_photo.hide();
+                            multi_majors.show();
                         }
                     });
                 });
@@ -236,6 +252,12 @@
                         } else {
                             $('#major').empty();
                         }
+                    });
+                });
+
+                $(document).ready(function() {
+                    $('.js-example-basic-single').select2({
+                        closeOnSelect: false,
                     });
                 });
             </script>

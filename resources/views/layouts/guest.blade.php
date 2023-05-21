@@ -9,15 +9,21 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    
+
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     
+    <link rel="stylesheet" href="{{ asset('theme/vendor/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('theme/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/select2/js/select2.min.js') }}"></script>
+
 
 </head>
 
@@ -25,7 +31,7 @@
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
-    
+
     {{-- كود جافا سكربت --}}
     @stack('js')
 
