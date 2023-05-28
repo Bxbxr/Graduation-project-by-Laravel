@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlatformPgae extends Model
 {
+    protected $fillable=[
+        'title','content',
+    ];
     use HasFactory;
 }

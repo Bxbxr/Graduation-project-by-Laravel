@@ -92,8 +92,7 @@ Route::prefix('/admin')->middleware('can:update-videos')->group(function(){
 
 Route::get('/majors/{id}', 'App\Http\Controllers\MajorController@show');
 Route::resource('page', 'App\Http\Controllers\PageController');
-Route::get('/platformpage', 'App\Http\Controllers\PlatformPageController@create')->name('platformpage.create');
-
+Route::resource('allPage','App\Http\Controllers\PlatformPageController');
 
 Route::get('/posts', 'App\Http\Controllers\PostController@index')->name('posts');
 

@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('layouts.main', 'App\Http\ViewComposers\PageComposer');
         View::composer('partials.majors-list', 'App\Http\ViewComposers\MajorComposer');
+        View::composer('profiles.show', 'App\Http\ViewComposers\PlatformPageComposer');
+
     }
 }

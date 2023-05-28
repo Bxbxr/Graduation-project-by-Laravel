@@ -37,8 +37,12 @@
                                 <select name="post-num" class="mr-3"
                                     style="color: #3d7bbe; font-size: 19px;  border: none;">
                                     <option value="#" selected disabled>الصفحات</option>
-                                    {{-- @foreach ($pages as $page) --}}
-                                    <option>من نحن</option>
+                                    @foreach ($allpages as $allpage)
+                                        <option value="">
+                                            <a href="{{ route('allPage.show', $allpage->title) }}" class="dropdown-item"
+                                                target="_blank">{{ $allpage->title }}</a>
+                                        </option>
+                                    @endforeach
 
                                 </select>
                                 @if ($profile->type === 'student')
@@ -56,7 +60,8 @@
 
                             </ul>
                             @if ($profile->type === 'student')
-                            <p><span class="text-primary pr-3">الجنس:</span> {{ $profile->gender === 'male' ? 'ذكر' : 'أنثى' }}</p>
+                                <p><span class="text-primary pr-3">الجنس:</span>
+                                    {{ $profile->gender === 'male' ? 'ذكر' : 'أنثى' }}</p>
                             @endif
                             <p class="mr-3"><span style="color: rgb(51, 83, 187);"> البايو:</span>
                                 {{ Str::limit($profile->bio, 150) }}

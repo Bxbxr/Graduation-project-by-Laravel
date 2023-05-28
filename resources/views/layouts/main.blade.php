@@ -47,17 +47,17 @@
                             الصفحة الرئيسية
                         </a>
                     </li>
-                    
-                    @guest       
-                    <li class="nav-item">
-                        <a href="{{ route('majors') }}" class="nav-link text-light">
-                            <i class="fas fa-history"></i>
-                            التخصصات
-                        </a>
-                    </li>
+
+                    @guest
+                        <li class="nav-item">
+                            <a href="{{ route('majors') }}" class="nav-link text-light">
+                                <i class="fas fa-history"></i>
+                                التخصصات
+                            </a>
+                        </li>
                     @endguest
                     @auth
-
+                        {{-- الصفحات --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,10 +66,8 @@
                             <div class="dropdown-menu text-right " aria-labelledby="navbarDropdown">
 
                                 @foreach ($pages as $page)
-                                    @if (auth()->user()->id == $page->user_id)
-                                        <a href="{{ route('page.show', $page->title) }}"
-                                            class="dropdown-item">{{ $page->title }}</a>
-                                    @endif
+                                    <a href="{{ route('page.show', $page->title) }}" class="dropdown-item"
+                                        target="_blank">{{ $page->title }}</a>
                                 @endforeach
                             </div>
                         </li>
@@ -331,40 +329,40 @@
                         if (item.success) {
                             resposeNotifications +=
                                 '<a class="dropdown-item d-flex align-items-center" href="#">\
-                                                                                                    <div class="ml-3">\
-                                                                                                        <div class="icon-circle bg-secondary">\
-                                                                                                            <i class="far fa-bell text-white"></i>\
-                                                                                                        </div>\
-                                                                                                    </div>\
-                                                                                                    <div>\
-                                                                                                        <div class="small text-gray-500">' +
+                                                                                                            <div class="ml-3">\
+                                                                                                                <div class="icon-circle bg-secondary">\
+                                                                                                                    <i class="far fa-bell text-white"></i>\
+                                                                                                                </div>\
+                                                                                                            </div>\
+                                                                                                            <div>\
+                                                                                                                <div class="small text-gray-500">' +
                                 date +
                                 ' الساعة ' +
                                 time +
                                 '</div>\
-                                                                                                        <span>تهانينا لقد تم معالجة مقطع الفيديو <b>' +
+                                                                                                                <span>تهانينا لقد تم معالجة مقطع الفيديو <b>' +
                                 item
                                 .notification + '</b> بنجاح</span>\
-                                                                                                    </div>\
-                                                                                                </a>';
+                                                                                                            </div>\
+                                                                                                        </a>';
                         } else {
                             resposeNotifications +=
                                 '<a class="dropdown-item d-flex align-items-center" href="#">\
-                                                                                                    <div class="ml-3">\
-                                                                                                        <div class="icon-circle bg-secondary">\
-                                                                                                            <i class="far fa-bell text-white"></i>\
-                                                                                                        </div>\
-                                                                                                    </div>\
-                                                                                                    <div>\
-                                                                                                        <div class="small text-gray-500">' +
+                                                                                                            <div class="ml-3">\
+                                                                                                                <div class="icon-circle bg-secondary">\
+                                                                                                                    <i class="far fa-bell text-white"></i>\
+                                                                                                                </div>\
+                                                                                                            </div>\
+                                                                                                            <div>\
+                                                                                                                <div class="small text-gray-500">' +
                                 date +
                                 ' الساعة ' +
                                 time +
                                 '</div>\
-                                                                                                        <span>للأسف حدث خطأ غير متوقع أثناء معالجة مقطع الفيديو <b>' +
+                                                                                                                <span>للأسف حدث خطأ غير متوقع أثناء معالجة مقطع الفيديو <b>' +
                                 item.notification + '</b> يرجى رفعه مرة أخرى</span>\
-                                                                                                    </div>\
-                                                                                                </a>';
+                                                                                                            </div>\
+                                                                                                        </a>';
                         }
                         $('.alert-body').html(resposeNotifications);
                     });
