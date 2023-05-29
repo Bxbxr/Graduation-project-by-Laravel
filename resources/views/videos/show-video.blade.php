@@ -114,7 +114,7 @@
                                                 </div>
                                                 <div class="col-10">
                                                     @if (Auth::check())
-                                                        @if ($comment->user_id == auth()->user()->id || auth()->user()->administration_level > 0)
+                                                        @if ($comment->user_id == auth()->user()->id || auth()->user()->administration_level > 1)
                                                             @if (!auth()->user()->block)
                                                                 <form action="{{ route('comment.destroy', $comment->id) }}"
                                                                     method="POST"
